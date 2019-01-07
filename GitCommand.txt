@@ -1,0 +1,27 @@
+For initalization command
+$ git init
+
+For checking Status
+$git Status
+
+For Checking log
+$ git log
+
+For adding in Git
+$git add .
+
+For commit
+$ git commit -m 'Message for change made in file'
+
+For checkingout
+$ git checkout {Hashcode}
+
+For Adding in (cloud) Github
+$git remote add Swabhav {URL}
+
+For verify email
+$ git remote -v
+
+For pushing
+$ git push Swabhav master
+
