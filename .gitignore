@@ -1,0 +1,8 @@
+#ignore all Jpg
+*.jpg
+
+#ignore all mp3
+*.mp3
+
+#ignore all png
+*.png
