@@ -6,33 +6,33 @@ import java.util.Scanner;
 public class TestArray {
 
 	public static void main(String[] args) {
-		int[] arry=new int[10];
+		int[] number=new int[10];
 		
-		arry[0]=1;
-		arry[1]=2;
-		arry[2]=3;
+		number[0]=1;
+		number[1]=2;
+		number[2]=3;
 		
-		System.out.println(Arrays.toString(arry));
-		arry[3]=50;
+		System.out.println(Arrays.toString(number));
+		number[3]=50;
 		
 		
-		for(int element:arry){
+		for(int element:number){
 			System.out.println(element);
 				
 		}
 		
 		int del,i,size,count=0;
-		size=arry.length;
+		size=number.length;
 		Scanner scan = new Scanner(System.in);
 		System.out.print("Enter Element to be Delete : ");
 	       del = scan.nextInt();
 	       for(i=0; i<size; i++)
 	       {
-	           if(arry[i] == del)
+	           if(number[i] == del)
 	           {
 	               for(int j=i; j<(size-1); j++)
 	               {
-	                   arry[j] = arry[j+1];
+	                   number[j] = number[j+1];
 	               }
 	               count++;
 	               break;
@@ -48,7 +48,7 @@ public class TestArray {
 	           System.out.println("Now the New Array is ");
 	           for(i=0; i<(size-1); i++)
 	           {
-	               System.out.print(arry[i]+ " ");
+	               System.out.print(number[i]+ " ");
 	           }
 	       }
 		

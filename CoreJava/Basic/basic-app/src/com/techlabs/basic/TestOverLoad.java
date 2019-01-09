@@ -18,7 +18,7 @@ public class TestOverLoad {
 		System.out.println(18.44);
 		
 		char a='#';
-		int []arry={1,2,3,4,5};
+		int[] number={1,2,3,4,5};
 		
 		printThis("Hello");
 		printThis(10);
@@ -27,7 +27,7 @@ public class TestOverLoad {
 		printThis(1234567.833);
 		printThis(10.23f);
 		printThis(1234567445l);
-		printThis(arry);
+		printThis(number);
 
 	}
 
