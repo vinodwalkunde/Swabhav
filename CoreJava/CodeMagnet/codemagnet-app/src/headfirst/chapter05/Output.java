@@ -2,6 +2,7 @@ package headfirst.chapter05;
 
 class Output {
 	public static void main(String[] args) {
+		
 		Output o = new Output();
 		o.go();
 	}
