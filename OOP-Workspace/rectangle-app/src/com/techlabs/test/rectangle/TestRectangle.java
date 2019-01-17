@@ -13,6 +13,8 @@ public class TestRectangle {
 
 		rectangle.setWidth(110);
 		System.out.println(rectangle.getWidth());
+		
+		System.out.println(new Rectangle().calcuateArea());
 
 	}
 

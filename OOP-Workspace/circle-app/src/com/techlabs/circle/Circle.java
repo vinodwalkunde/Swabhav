@@ -21,7 +21,7 @@ public class Circle {
 
 	}
 
-	public float calculaterParmeter() {
+	public float calculaterCircumference() {
 		return 2 * PI * radius;
 
 	}
