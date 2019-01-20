@@ -9,10 +9,10 @@ public class TestStudentSerialization {
 
 	public static void main(String[] args) throws Exception {
 		Student student = new Student("Vinod", "Valkunde", 24);
-
+//D:\\Vinod\\Swabhav\\OOP-Workspace\\exercise-app\\src\\com\\techlabs\\serializable\\file.txt
 		// serialization
 		FileOutputStream file = new FileOutputStream(
-				"D:\\Vinod\\Swabhav\\OOP-Workspace\\exercise-app\\src\\com\\techlabs\\serializable\\file.txt");
+				"file.txt");
 		ObjectOutputStream out = new ObjectOutputStream(file);
 		out.writeObject(student);
 		out.close();
@@ -20,7 +20,7 @@ public class TestStudentSerialization {
 		Student studentDeserialization = null;
 		// deserialization
 		FileInputStream fileInput = new FileInputStream(
-				"D:\\Vinod\\Swabhav\\OOP-Workspace\\exercise-app\\src\\com\\techlabs\\serializable\\file.txt");
+				"file.txt");
 		ObjectInputStream in = new ObjectInputStream(fileInput);
 		studentDeserialization = (Student) in.readObject();
 		in.close();
