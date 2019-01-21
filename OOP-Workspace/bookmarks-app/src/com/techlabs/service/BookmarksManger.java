@@ -8,13 +8,13 @@ import java.util.Scanner;
 
 public class BookmarksManger {
 	public static void addBookmarks(String name, String url) throws IOException {
-		FileWriter fw = new FileWriter("Bookmarks.html", true);
+		FileWriter fw = new FileWriter("data//Bookmarks.html", true);
 		fw.write("<a href=\"" + url + "\">" + name + "</a><br>\n");
 		fw.close();
 	}
 
 	public static void viewBookmarks() throws FileNotFoundException {
-		File file = new File("Bookmarks.html");
+		File file = new File("data//Bookmarks.html");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
 			System.out.println(sc.nextLine());
