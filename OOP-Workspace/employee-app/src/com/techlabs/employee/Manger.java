@@ -23,7 +23,7 @@ public class Manger extends Employee {
 	public double getTa() {
 		return ta;
 	}
-
+	@Override
 	public String toString() {
 		return "Name :" + super.getName() + " Employee Number :" + super.getEmpNumber() + " \nBasic Salary :"
 				+ super.getBasic() + "\nHouse Rent Allowance :" + this.hra + "\nTravel Allowance :" + this.ta

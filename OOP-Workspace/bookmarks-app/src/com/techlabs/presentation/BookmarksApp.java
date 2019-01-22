@@ -25,6 +25,7 @@ public class BookmarksApp {
 				String url = scanner1.nextLine();
 				BookmarksManger.addBookmarks(name, url);
 				break;
+
 			case 2:
 				BookmarksManger.viewBookmarks();
 				break;
