@@ -1,5 +1,7 @@
 package com.techlabs.test.college;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 import com.techlabs.college.EnggneringCollege;
@@ -8,7 +10,7 @@ import com.techlabs.entities.Professor;
 import com.techlabs.entities.Student;
 
 public class TestEnggneringCollege {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		Student student = new Student(1, "parel", "10.10.12", Branch.IT);
 		Student student1 = new Student(2, "Andheri", "11.11.11", Branch.EXTC);
 		Student student2 = new Student(3, "Lalbag", "10.11.12", Branch.COMPUTER);
@@ -28,8 +30,9 @@ public class TestEnggneringCollege {
 
 		college.addProfessor(professor);
 		college.addProfessor(professor2);
-		
+
 		printDetails(college);
+		htmlGenerator(college);
 	}
 
 	public static void printDetails(EnggneringCollege college) {
@@ -44,4 +47,28 @@ public class TestEnggneringCollege {
 			System.out.println(professorL);
 		}
 	}
+
+	public static void htmlGenerator(EnggneringCollege college) throws IOException {
+		String fileName = "college.html";
+		FileWriter filewriter = new FileWriter(fileName, false);
+		List<Student> studentList = college.getStudents();
+		List<Professor> professorsList = college.getProfessor();
+		filewriter.append("<div><h1><strong>College name :Enggnering College</b></h1><strong>" + "\t"
+				+ "<div>No of Students in this college :" + college.getStudentCount() + "<br>" + "\t"
+				+ "<div>No of Professos in this college :" + college.getProfessorCount() + "<br>");
+		filewriter.append("<h2>Student Details</h2>");
+
+		for (Student student : studentList) {
+			filewriter.append("<div> ID : " + student.getId() + "</div>" + "<div> Branch " + student.getBranch()
+					+ "</div>" + "<div> Address : " + student.getAddress() + "</div>" + "<div> DOB : "
+					+ student.getDob() + "</div>");
+		}
+		filewriter.append("<h2>Professor Details</h2>");
+		for (Professor professor : professorsList) {
+			filewriter.append("<div> ID : " + professor.getId() + "</div>" + "<div> Address : " + professor.getAddress()
+					+ "</div>" + "<div> DOB : " + professor.getDob() + "</div>");
+		}
+		filewriter.close();
+	}
+
 }

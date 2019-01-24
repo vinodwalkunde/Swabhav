@@ -26,11 +26,19 @@ public class EnggneringCollege {
 		return professor;
 	}
 
+	public int getStudentCount() {
+		return students.size();
+
+	}
+
+	public int getProfessorCount() {
+		return students.size();
+
+	}
+
 	public String toString() {
 		return "Student Details" + this.students.toString() + " \nProfessor Details " + this.professor;
 
 	}
-	
-
 
 }

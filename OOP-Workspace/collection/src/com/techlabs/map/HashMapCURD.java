@@ -11,12 +11,12 @@ public class HashMapCURD {
 		hashmap.put(2, 200);
 		hashmap.put(3, 300);
 		hashmap.put(4, 400);
-		
+
 		hashmap.remove(3);
-		Set<Integer>set=hashmap.keySet();
-		
+		Set<Integer> set = hashmap.keySet();
+
 		for (Integer integer : set) {
-			System.out.println(integer);
+			System.out.println(integer + " " + hashmap.get(integer));
 		}
 	}
 

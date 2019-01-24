@@ -6,11 +6,17 @@ import org.junit.Test;
 
 public class TestLogicUnit {
 	@Test
-	public void cubeOfEven() {
+	public void testForPositiveEvenNumber() {
 		Calculator calculator = new Calculator();
 
 		int actualResult = (int) calculator.cubeOfEven(2);
 		assertEquals(8, actualResult);
+	}
+	@Test
+	public void testForNegativeEvenNumber() {
+		Calculator calculator = new Calculator();
+		long actual=(long) calculator.cubeOfEven(-4);
+		assertEquals(-64, actual);
 	}
 
 }

@@ -11,6 +11,7 @@ public class ArrayListCURD {
 		arrayList.add(20);
 		arrayList.add(30);
 		arrayList.add(40);
+		
 
 		arrayList.remove(1);
 		for (Integer integer : arrayList) {
