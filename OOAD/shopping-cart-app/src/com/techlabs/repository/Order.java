@@ -26,6 +26,12 @@ public class Order {
 	}
 
 	public void addItem(LineItem lineItem) {
+		for (int i = 0; i < item.size(); i++) {
+			if (lineItem.getProduct().getId() == item.get(i).getProduct().getId()) {
+				item.get(i).setQuantity(lineItem.getQuantity() + item.get(i).getQuantity());
+				return;
+			}
+		}
 		item.add(lineItem);
 	}
 

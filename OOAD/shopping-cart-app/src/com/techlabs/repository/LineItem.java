@@ -25,6 +25,10 @@ public class LineItem {
 		return id;
 	}
 
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
 	public int getQuantity() {
 		return quantity;
 	}
