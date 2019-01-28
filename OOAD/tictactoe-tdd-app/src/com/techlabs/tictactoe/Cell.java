@@ -12,14 +12,11 @@ public class Cell {
 	}
 
 	public void setMark(Mark mark) {
-		// if (mark != Mark.EMPTY) {
-		// if (this.mark == Mark.EMPTY) {
-		this.mark = mark;
-		// } else {
-		// throw new RuntimeException("Cell Alrady Marks");
-		// }
-		// }else
-		// throw new RuntimeException("Please Enter valid Input");
+		if (this.mark == Mark.EMPTY) {
+			this.mark = mark;
+		} else {
+			throw new RuntimeException("Cell Already Marks");
+		}
 	}
 
 }

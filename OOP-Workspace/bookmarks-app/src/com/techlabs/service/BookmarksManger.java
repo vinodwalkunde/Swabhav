@@ -16,10 +16,13 @@ public class BookmarksManger {
 	public static void viewBookmarks() throws FileNotFoundException {
 		File file = new File("data//Bookmarks.html");
 		Scanner sc = new Scanner(file);
+		StringBuffer string = new StringBuffer();
 		while (sc.hasNextLine()) {
-			System.out.println(sc.nextLine());
+			string.append(sc.nextLine());
+			string.append("\n");
 
 		}
+		System.out.println(string);
 		sc.close();
 	}
 }

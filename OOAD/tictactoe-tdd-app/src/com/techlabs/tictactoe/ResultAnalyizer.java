@@ -1,28 +1,37 @@
 package com.techlabs.tictactoe;
 
-public class ResultAnalyizer {
+public class ResultAnalyizer implements IResultAnalyizer {
 	private Result result;
-	private Board board;
+	private IBoard board;
 
-	public ResultAnalyizer(Board board) {
+	public ResultAnalyizer(IBoard board) {
 		this.board = board;
 	}
 
-	public void hasWon() {
+	/* (non-Javadoc)
+	 * @see com.techlabs.tictactoe.IResultAnalyizer#checkResult()
+	 */
+	@Override
+	public Result checkResult() {
 		if (isHorizontal() || isVertical() || isDiagonal()) {
-			result = Result.WIN;
+			return result = Result.WIN;
 		}
 		if (board.isEmpty()) {
-			result = Result.NOTSTARTED;
+			return result = Result.NOTSTARTED;
 		}
 		if (board.isFull()) {
-			result = Result.DRAW;
+			return result = Result.DRAW;
 		}
 		if (result != Result.DRAW && result != Result.WIN && !board.isEmpty()) {
-			result = Result.INPROGRESS;
+			return result = Result.INPROGRESS;
 		}
+		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.techlabs.tictactoe.IResultAnalyizer#isHorizontal()
+	 */
+	@Override
 	public boolean isHorizontal() {
 		if (Mark.EMPTY != board.getCellMark(0) && board.getCellMark(0) == board.getCellMark(1)
 				&& board.getCellMark(1) == board.getCellMark(2)) {
@@ -39,6 +48,10 @@ public class ResultAnalyizer {
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.techlabs.tictactoe.IResultAnalyizer#isVertical()
+	 */
+	@Override
 	public boolean isVertical() {
 		if (Mark.EMPTY != board.getCellMark(0) && board.getCellMark(0) == board.getCellMark(3)
 				&& board.getCellMark(3) == board.getCellMark(6)) {
@@ -55,6 +68,10 @@ public class ResultAnalyizer {
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.techlabs.tictactoe.IResultAnalyizer#isDiagonal()
+	 */
+	@Override
 	public boolean isDiagonal() {
 		if (Mark.EMPTY != board.getCellMark(0) && board.getCellMark(0) == board.getCellMark(4)
 				&& board.getCellMark(4) == board.getCellMark(8)) {
@@ -67,11 +84,19 @@ public class ResultAnalyizer {
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.techlabs.tictactoe.IResultAnalyizer#getResult()
+	 */
+	@Override
 	public Result getResult() {
 		return result;
 	}
 
-	public Board getBoard() {
+	/* (non-Javadoc)
+	 * @see com.techlabs.tictactoe.IResultAnalyizer#getBoard()
+	 */
+	@Override
+	public IBoard getBoard() {
 		return board;
 	}
 }

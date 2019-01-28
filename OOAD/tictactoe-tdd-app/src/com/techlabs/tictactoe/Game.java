@@ -3,48 +3,51 @@ package com.techlabs.tictactoe;
 public class Game {
 	private Player player1;
 	private Player player2;
-	private ResultAnalyizer resultAnalyizer;
-	private Board board;
+	private IResultAnalyizer resultAnalyizer;
+	private IBoard board;
+	private Player currentPlayer = player1;
 	private boolean currentState = true;
 
-	public Game(ResultAnalyizer resultAnalyizer, Board board, Player player1, Player player2) {
+	public Game(IResultAnalyizer resultAnalyizer, IBoard board, Player player1, Player player2) {
 		this.resultAnalyizer = resultAnalyizer;
 		this.board = board;
 		this.player1 = player1;
 		this.player2 = player2;
 	}
 
-	public void play(int index) {
+	public Result play(int index) {
 		if (currentState == true) {
 			board.setCellMark(index, Mark.CROSS);
-			resultAnalyizer.hasWon();
+			resultAnalyizer.checkResult();
 			if (resultAnalyizer.getResult() == Result.WIN) {
-				System.out.println("Player 1 WIN");
-				return;
-				// break;
+				return resultAnalyizer.getResult();
 			}
 			if (resultAnalyizer.getResult() == Result.DRAW) {
-				System.out.println("Game DRAW");
-				return;
-				// break;
+				return resultAnalyizer.getResult();
 			}
 		}
 		if (currentState == false) {
 			board.setCellMark(index, Mark.NOUGHT);
-			resultAnalyizer.hasWon();
+			resultAnalyizer.checkResult();
 			if (resultAnalyizer.getResult() == Result.WIN) {
-				System.out.println("Player 2 WIN");
-				return;
-				// break;
+				return resultAnalyizer.getResult();
 			}
 			if (resultAnalyizer.getResult() == Result.DRAW) {
-				System.out.println("Game DRAW");
-				return;
-				// break;
+				return resultAnalyizer.getResult();
 			}
 		}
-		currentState = !currentState;
+//		switchPlayer();
+		 currentState = !currentState;
+		return resultAnalyizer.getResult();
 
+	}
+
+	public void switchPlayer() {
+		if (currentPlayer == player1) {
+			currentPlayer = player2;
+		} else {
+			currentPlayer = player1;
+		}
 	}
 
 }
