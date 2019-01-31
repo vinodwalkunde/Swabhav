@@ -36,7 +36,7 @@ public class Game {
 				return resultAnalyizer.getResult();
 			}
 		}
-//		switchPlayer();
+		switchPlayer();
 		 currentState = !currentState;
 		return resultAnalyizer.getResult();
 
