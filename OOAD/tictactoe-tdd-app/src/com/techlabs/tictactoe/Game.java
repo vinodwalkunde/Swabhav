@@ -5,7 +5,7 @@ public class Game {
 	private Player player2;
 	private IResultAnalyizer resultAnalyizer;
 	private IBoard board;
-	private Player currentPlayer = player1;
+	private Player currentPlayer = player2;
 	private boolean currentState = true;
 
 	public Game(IResultAnalyizer resultAnalyizer, IBoard board, Player player1, Player player2) {
@@ -37,7 +37,7 @@ public class Game {
 			}
 		}
 		switchPlayer();
-		 currentState = !currentState;
+		currentState = !currentState;
 		return resultAnalyizer.getResult();
 
 	}
@@ -48,6 +48,30 @@ public class Game {
 		} else {
 			currentPlayer = player1;
 		}
+	}
+
+	public Player getPlayer1() {
+		return player1;
+	}
+
+	public Player getPlayer2() {
+		return player2;
+	}
+
+	public IResultAnalyizer getResultAnalyizer() {
+		return resultAnalyizer;
+	}
+
+	public IBoard getBoard() {
+		return board;
+	}
+
+	public Player getCurrentPlayer() {
+		return currentPlayer;
+	}
+
+	public boolean isCurrentState() {
+		return currentState;
 	}
 
 }
