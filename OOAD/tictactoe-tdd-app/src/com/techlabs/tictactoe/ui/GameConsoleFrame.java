@@ -4,6 +4,7 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -85,6 +86,22 @@ public class GameConsoleFrame extends JFrame {
 				Result state = game.play(position);
 				textField.setText(game.getCurrentPlayer().getPlayerName());
 				Mark mark = game.getBoard().getCellMark(position);
+
+				String cross = "O.jpg";
+				String nought = "X.jpg";
+
+				ImageIcon icross = new ImageIcon(cross);
+				ImageIcon inought = new ImageIcon(nought);
+
+				JButton button = (JButton) e.getSource();
+				if (Mark.CROSS == mark) {
+					button.setIcon(icross);
+					// button.setText("X");
+				}
+				if (Mark.NOUGHT == mark) {
+					button.setIcon(inought);
+					// button.setText("O");
+				}
 
 				if (state == Result.WIN || state == Result.DRAW) {
 					if (state == Result.DRAW) {

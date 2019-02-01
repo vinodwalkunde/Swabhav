@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>
+            Color Picker
+        </title>
+    </head>
+    <body>
+        Pick
+        <select id="select" name="Color" size="1" onchange="myfunction()">
+            <option  value="Red">Red</option>
+            <option  value="Green">Green</option>
+            <option  value="Blue">Blue</option>
+        </select>
+        <script>
+            function myfunction(){
+                var element=document.getElementById("select").value;
+                if(element=="Red"){
+                    document.body.style.backgroundColor = "#ff5a57";
+                }
+                if(element=="Green"){
+                    document.body.style.backgroundColor = "#49ff1c";
+                }
+                if(element=="Blue"){
+                    document.body.style.backgroundColor = "#29c6ff";
+                }
+
+            }
+        </script>
+    </body>
+</html>
