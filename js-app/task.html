@@ -1,38 +1,41 @@
 <html>
-    <head>
-        <title>
-            Task
-        </title>
-    </head>
-    <body>
-        Enter Name:
-        <input type="text" name="message" id="Name" placeholder="place">
-        <input type="button" value="ADD" id="Add" onclick="myfunction()">
-        <span id="alert" style="color:red"></span>
-        <p id="append">
 
-            <ul id="list">
+<head>
+    <title>
+        Task
+    </title>
+</head>
 
-            </ul>
-        </p>
-        
-        <br>
-        <script>
-            function myfunction(){
-               var item=document.getElementById("Name").value;
-               var ul=document.getElementById("list")
-               var li=document.createElement("li")
-               document.getElementById("alert").innerHTML="";
-              
-               if(item!=""){
-                li.appendChild(document.createTextNode(""+item))
+<body>
+    Enter Name:
+    <input type="text" name="message" id="Name" placeholder="Write">
+    <input type="button" value="ADD" id="Add" onclick="myfunction()">
+    <span id="alert" style="color:red"></span>
+    <p id="append">
+
+        <ul id="list">
+
+        </ul>
+    </p>
+
+    <br>
+    <script>
+        function myfunction() {
+            var item = document.getElementById("Name").value;
+            var ul = document.getElementById("list")
+            var li = document.createElement("li")
+            document.getElementById("alert").innerHTML = "";
+
+            if (item != "") {
+                li.appendChild(document.createTextNode("" + item))
                 ul.appendChild(li);
-                document.getElementById("Name").value="";
-               }else{
-                document.getElementById("alert").innerHTML="please Enter Name";
-               }
-              
+                document.getElementById("Name").value = "";
+            } else {
+                document.getElementById("alert").innerHTML = "please Enter Name";
             }
-        </script>
-    </body>
+
+        }
+    </script>
+</body>
+
 </html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JSON Operation
+    </title>
+</head>
+
+<body>
+    <script>
+        var student = '{"name":"Vinod", "birth":"1994-10-09", "city":"Mumbai"}';
+        var obj = JSON.parse(student);
+        console.log(obj.name);
+        console.log(obj.birth);
+        console.log(obj.city);
+
+        var obj = { name: "Vinod", age: 24, city: "Mumbai" };
+        var myJSON = JSON.stringify(obj);
+        console.log(myJSON);
+    </script>
+</body>
+
+</html>

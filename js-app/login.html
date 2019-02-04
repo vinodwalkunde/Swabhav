@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Form</title>
+</head>
+
+<body>
+    <form action="action.jsp" method="POST" name="loginForm" onsubmit="return validateForm()">
+        Name:
+        <input type="text" id="name" name="name">
+
+        <br>
+        Password:
+        <input type="password" id="password" name="password">
+
+        <br>
+        <input type="submit" value="Submit">
+        <span id="alert" style="color:red"></span>
+    </form>
+    <script>
+        function validateForm() {
+            var name = document.forms["loginForm"]["name"].value;
+            var password = document.forms["loginForm"]["password"].value;
+            if (name == "" || password == "") {
+                document.getElementById("alert").innerHTML = "Please Enter Name Or Password";
+                return false;
+            }
+        }
+    </script>
+</body>
+
+</html>

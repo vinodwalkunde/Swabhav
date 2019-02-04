@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <title>
+        Audio and Video Tag
+    </title>
+</head>
+
+<body>
+    <button onclick="play()" type="button">
+        Play Video
+    </button>
+    <button onclick="pause()" type="button">
+        Pause Video
+    </button><br>
+    <video id="myvideo" width="320" height="176">
+        <source src="https://www.youtube.com/watch?v=vYPYgHwf2KA" type="video/mp4">
+        <source src="carton.ogg" type="video/ogg">
+    </video>
+    <br>
+    <audio controls>
+        <source src="GameofThronesTheme.ogg" type="audio/ogg">
+        <source src="GameofThronesTheme.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script>
+        var vid = document.getElementById("myvideo");
+        function play() {
+            vid.play();
+        }
+        function pause() {
+            vid.pause();
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<html>
+
+<head>
+    <title>
+        Two Button
+    </title>
+</head>
+
+<body>
+    <div class="colorButton">
+        <button value="#ff8080" onclick="changeColor(value)">Red</button>
+        <button value="#8080ff" onclick="changeColor(value)">Blue</button>
+    </div>
+    <script>
+        changeColor(value);
+        function changeColor(color) {
+            console.log(color);
+            document.bgColor = color;
+        }
+    </script>
+</body>
+
+</html>

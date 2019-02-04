@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Function CallBack</title>
+</head>
+
+<body>
+    <button id="Hello" name="Hello">Hello</button>
+    <script>
+        function fnCubeOfEven(no, fn) {
+            if (no % 2 == 0) {
+                fn("solution is " + (no * no * no));
+            }
+            else {
+                fn("Error:Not even");
+            }
+        }
+        fnCubeOfEven(10, handleResult);
+
+        fnCubeOfEven(2, function result(r) {
+            console.log("Inside Anonymous Function");
+            console.log(r);
+        })
+        function handleResult(r) {
+            console.log("Result is " + r);
+        }
+        var button1 = document.getElementById("Hello");
+
+        button1.addEventListener("click", display);
+        function display() {
+            console.log("Hello Button Click")
+        }
+        setTimeout(function () {
+            handleResult("foo")
+        }, 3000);
+        button1.addEventListener("click", function () {
+            console.log("Inside Anonymous Function when Hello click")
+        })
+    </script>
+</body>
+
+</html>

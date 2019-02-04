@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Stop Watch</title>
+</head>
+
+<body>
+    <output id="displayWatch">00:00:00.000</output><br>
+    <button id="start">Start</button>
+    <button id="pause">Pause</button>
+    <button type="reset">Reset</button>
+    <script>
+        var running = 0;
+        var time = 0;
+        var hour = 0;
+        var min = 0;
+        var sec = 0;
+        var millisec = 0;
+
+        function start() {
+            started = window.setInterval(clockRunning, 1000);
+        }
+        function stop() {
+            window.clearInterval(started);
+        }
+        function clockRunning() {
+            time++;
+            sec++;
+            if (sec == 60) {
+                min = min + 1;
+                sec = 0;
+                if (hour == 60) {
+                    hour = hour + 1;
+                    min = 0;
+                }
+            }
+            document.getElementById("displayWatch").innerHTML = (hour ? (hour > 9 ? hour : "0" + hour) : "00")
+                + ":" + (min ? (min > 9 ? min : "0" + min) : "00") + ":" + (sec > 9 ? sec : "0" + sec);
+        }
+        var button1 = document.getElementById("start");
+        button1.addEventListener("click", start);
+
+        var button2 = document.getElementById("pause");
+        button2.addEventListener("click", stop);
+    </script>
+</body>
+
+</html>

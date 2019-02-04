@@ -2,11 +2,12 @@ package com.techlabs.service;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 
 public interface IBookMarks {
 
 	void addBookmarks(String name, String url) throws IOException;
 
-	void viewBookmarks() throws FileNotFoundException;
+	List<String> viewBookmarks() throws FileNotFoundException;
 
 }
