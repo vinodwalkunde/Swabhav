@@ -8,15 +8,25 @@
 
 <body>
     <div class="colorButton">
-        <button value="#ff8080" onclick="changeColor(value)">Red</button>
-        <button value="#8080ff" onclick="changeColor(value)">Blue</button>
+        <button value="#ff8080" id="red">Red</button>
+        <button value="#8080ff" id="blue">Blue</button>
     </div>
     <script>
-        changeColor(value);
-        function changeColor(color) {
-            console.log(color);
-            document.bgColor = color;
-        }
+        (function () {
+            var button = document.getElementById("red");
+            button.addEventListener("click", function () {
+                changeColor(button.value);
+            })
+            var button1 = document.getElementById("blue");
+            button1.addEventListener("click", function () {
+                changeColor(button1.value);
+            })
+
+            function changeColor(color) {
+                console.log(color);
+                document.bgColor = color;
+            }
+        })();
     </script>
 </body>
 

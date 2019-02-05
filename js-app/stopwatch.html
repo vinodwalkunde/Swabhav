@@ -46,6 +46,15 @@
 
         var button2 = document.getElementById("pause");
         button2.addEventListener("click", stop);
+
+        var button3=document.getElementById("reset");
+        button3.addEventListener("click",function(){
+            output.textContent="00:00:00.000";
+            min=0;
+            sec=0;
+            hour=0;
+            millisec=0;
+        })
     </script>
 </body>
 

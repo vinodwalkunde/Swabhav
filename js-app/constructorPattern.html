@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Constructor Pattern</title>
+</head>
+
+<body>
+    <script>
+        function Student() {
+            var _firstName;
+            var _lastName;
+
+            this.setFirstName = function (firstName) {
+                if (firstName.length > 0)
+                    _firstName = firstName;
+            }
+
+            this.setLastName = function (lastName) {
+                if (lastName.length > 0)
+                    _lastName = lastName;
+            }
+
+            this.getFullName = function () {
+                return _firstName + " " + _lastName;
+            }
+        }
+        var s1 = new Student();
+        s1.setFirstName("Vinod");
+        s1.setLastName("Valkunde");
+        console.log(s1.getFullName());
+        console.log(s1);
+
+    </script>
+    <script>
+
+        function Employee(firstName, lastName) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.fullName = firstName + " " + lastName;
+        }
+        var e1 = new Employee("Vinod", "Valkunde")
+        console.log(e1.firstName);
+        console.log(e1.lastName);
+        console.log(e1.fullName);
+        console.log(e1)
+    </script>
+</body>
+
+</html>

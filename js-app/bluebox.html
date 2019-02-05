@@ -8,66 +8,82 @@
 
 <body>
     <div>
-        <button id="Start" onclick="display()" style="height: 50;width: 100;padding: 10">StartGame</button>
-        <button id="Reset" onclick="window.location.reload()" style="height: 50;width: 100;padding: 10">Reset</button>
+        <button id="Start" style="height: 50;width: 100;padding: 10">StartGame</button>
+        <button id="Reset" style="height: 50;width: 100;padding: 10">Reset</button>
         <br>
     </div>
     <div id="Buttondisplay">
 
     </div>
     <script>
-        function display() {
-            var buttonDisplay = document.getElementById("Buttondisplay");
-            buttonDisplay.innerHTML = "";
-            var i;
-            for (i = 1; i <= 50; i++) {
-                var buttonName = document.createElement("BUTTON");
-                buttonName.setAttribute("id", i);
-                buttonName.addEventListener('click', buttonClick);
-                buttonName.innerHTML = i;
-                buttonName.style.height = 50;
-                buttonName.style.width = 100;
-                buttonName.style.padding = 10;
-                buttonName.style.margin = 5;
-                buttonDisplay.appendChild(buttonName);
-            }
-        }
-        // window.display();
-        var winingNumber = Math.floor((Math.random() * 50) + 1);
-        console.log(winingNumber);
-        var count = 0;
-        function buttonClick(event) {
-            var index = event.srcElement.id;
-            if (count < 5) {
-                if (index > winingNumber) {
-                    document.getElementById(index).style.backgroundColor = "#80ff80";
-                    count++;
-                    document.getElementById(index).disabled = true;
-                }
-                if (index < winingNumber) {
-                    document.getElementById(index).style.backgroundColor = "#ff8080";
-                    count++;
-                    document.getElementById(index).disabled = true;
-                }
-                if (index == winingNumber) {
-                    document.getElementById(index).style.backgroundColor = "#8080ff";
+        (
+            function () {
+                var buttonDisplay = document.getElementById("Buttondisplay");
+                var button2 = document.getElementById("Reset");
+                var button1 = document.getElementById("Start");
+                var winingNumber = Math.floor((Math.random() * 50) + 1);
+                console.log(winingNumber);
+                var count = 0;
 
-                    disableButton();
-                    alert("Win");
-                }
-            }
-            else {
-                alert("Game Over")
-                disableButton();
 
-            }
-        }
-        function disableButton() {
-            var i = 1;
-            for (i = 1; i <= 50; i++) {
-                document.getElementById(i).disabled = true;
-            }
-        }
+                function display() {
+
+                    buttonDisplay.innerHTML = "";
+                    for (var i = 1; i <= 50; i++) {
+                        var buttonName = document.createElement("BUTTON");
+                        buttonName.setAttribute("id", i);
+                        buttonName.addEventListener('click', buttonClick);
+                        buttonName.innerHTML = i;
+                        buttonName.style.height = 50;
+                        buttonName.style.width = 100;
+                        buttonName.style.padding = 10;
+                        buttonName.style.margin = 5;
+                        buttonDisplay.appendChild(buttonName);
+                    }
+                }
+                // window.display();
+
+                function buttonClick(event) {
+                    var index = event.srcElement.id;
+                    var buttonCheck = event.srcElement;
+
+                    if (count < 5) {
+                        if (index > winingNumber) {
+                            buttonCheck.style.backgroundColor = "#80ff80";
+                            count++;
+                            buttonCheck.disabled = true;
+                        }
+                        if (index < winingNumber) {
+                            buttonCheck.style.backgroundColor = "#ff8080";
+                            count++;
+                            buttonCheck.disabled = true;
+                        }
+                        if (index == winingNumber) {
+                            buttonCheck.style.backgroundColor = "#8080ff";
+
+                            disableButton();
+                            alert("Win");
+                        }
+                    }
+                    else {
+                        alert("Game Over")
+                        disableButton();
+
+                    }
+                }
+                function disableButton() {
+
+                    for (var i = 1; i <= 50; i++) {
+                        document.getElementById(i).disabled = true;
+                    }
+                }
+
+                button1.addEventListener("click", display);
+
+                button2.addEventListener("click", function () {
+                    location.reload();
+                });
+            })();
     </script>
 </body>
 

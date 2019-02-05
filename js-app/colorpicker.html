@@ -8,18 +8,25 @@
 
 <body>
     Pick
-    <select id="colorList" onchange="changeColor(colorList.value)">
+    <select id="colorList">
         <option id="red" value="#ff8080">red</option>
         <option id="blue" value="#8080ff">blue</option>
         <option id="green" value="#80ff80">green</option>
         <option id="yellow" value="#ffff80">yellow</option>
     </select>
     <script>
+
+        var button = document.getElementById("colorList");
+        button.addEventListener("change", function () {
+            changeColor(button.value)
+        });
+
         changeColor(colorList.value);
         function changeColor(color) {
             console.log(color);
             document.bgColor = color;
         }
+
     </script>
 </body>
 

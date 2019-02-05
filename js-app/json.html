@@ -11,6 +11,7 @@
 
 <body>
     <script>
+        (function(){
         var student = '{"name":"Vinod", "birth":"1994-10-09", "city":"Mumbai"}';
         var obj = JSON.parse(student);
         console.log(obj.name);
@@ -20,6 +21,7 @@
         var obj = { name: "Vinod", age: 24, city: "Mumbai" };
         var myJSON = JSON.stringify(obj);
         console.log(myJSON);
+        })();
     </script>
 </body>
 
