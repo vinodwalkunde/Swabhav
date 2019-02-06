@@ -1,53 +1,121 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Question Bank</title>
+    <title>Quetion Bank</title>
 </head>
 
 <body>
-    <input type="button" value="start" id="start">
-
+    <p id="time"></p>
+    <div id="ruleWindow">
+        <input type="button" id="startButton" value="Start">
+    </div>
     <script>
-        var questions = [
-            {
-                "id": 1,
-                "key": "What is the capital of Arunachal Pradesh?",
-                "option": ["Itanagar", "Dispur", "Imphal", "Shillong"],
-                "answer": "option[0]"
-            },
-            {
-                "id": 2,
-                "key": "Which state has the largest area?",
-                "option": ["Maharashtra", "Madhya Pradesh", "Uttar Pradesh", "Rajasthan"],
-                "answer": "option[3]"
-            },
-            {
-                "id": 3,
-                "key": "Which state has the largest population?",
-                "option": ["Uttar Pradesh", "Maharastra", "Andra Pradesh", "Bihar"],
-                "answer": "option[0]"
-            },
-            {
-                "id": 4,
-                "key": "What is the state flower of Haryana?",
-                "option": ["Lotus", "Rhododendron", "Golden Shower", "Not declared"],
-                "answer": "option[0]"
-            },
-            {
-                "id": 5,
-                "key": "Which state has Almond as its State Tree?",
-                "option": ["Himachal Pradesh", "Goa", "Jammu and Kashmir", "Arunachal Pradesh"],
-                "answer": "option[2]"
+        (
+            function () {
+                var questions = [
+                    {
+                        "id": 1,
+                        "key": "What is the capital of Arunachal Pradesh?",
+                        "option": ["Itanagar", "Dispur", "Imphal", "Shillong"],
+                        "answer": "option[0]"
+                    },
+                    {
+                        "id": 2,
+                        "key": "Which state has the largest area?",
+                        "option": ["Maharashtra", "Madhya Pradesh", "Uttar Pradesh", "Rajasthan"],
+                        "answer": "option[3]"
+                    },
+                    {
+                        "id": 3,
+                        "key": "Which state has the largest population?",
+                        "option": ["Uttar Pradesh", "Maharastra", "Andra Pradesh", "Bihar"],
+                        "answer": "option[0]"
+                    },
+                    {
+                        "id": 4,
+                        "key": "What is the state flower of Haryana?",
+                        "option": ["Lotus", "Rhododendron", "Golden Shower", "Not declared"],
+                        "answer": "option[0]"
+                    },
+                    {
+                        "id": 5,
+                        "key": "Which state has Almond as its State Tree?",
+                        "option": ["Himachal Pradesh", "Goa", "Jammu and Kashmir", "Arunachal Pradesh"],
+                        "answer": "option[2]"
+                    }
+                ];
+                var mainWindow = document.querySelector("#ruleWindow");
+                var correctCount = 0;
+                var seconds = 0;
+                function onStart() {
+                    startTest();
+                }
+                var num = [];
+                var index = 0;
+                var question = Math.floor(Math.random() * 3);
+                function startTest() {
+                    mainWindow.innerHTML = "";
+                    createView(questions[question]);
+                }
+                function createView(question) {
+                    index++;
+                    var labelID = document.createElement("Label");
+                    var labelQuestion = document.createElement("Label");
+                    var form = document.createElement("form");
+                    form.setAttribute("id", "form");
+                    for (var i = 0; i < question.option.length; i++) {
+                        var radio = document.createElement("input");
+                        radio.autofocus = true;
+                        var radioLabel = document.createElement("label");
+                        radio.type = "radio";
+                        radio.name = "option";
+                        radio.addEventListener("click", check);
+                        radio.setAttribute("id", "option[" + i + "]");
+                        radio.setAttribute("value", question.answer);
+                        radioLabel.innerHTML = question.option[i];
+                        form.appendChild(radio);
+                        form.appendChild(radioLabel);
+                    }
+                    var nextButton = document.createElement("button");
+                    labelID.innerHTML = index + ".";
+                    labelQuestion.innerHTML = question.key;
+                    labelQuestion.style.marginLeft = 150;
+                    nextButton.innerHTML = "Next";
+                    nextButton.addEventListener("click", next);
+                    mainWindow.appendChild(labelID);
+                    mainWindow.appendChild(labelQuestion);
+                    mainWindow.appendChild(form);
+                    mainWindow.appendChild(nextButton);
+                }
+                function check(event) {
+                    if (event.srcElement.id == event.srcElement.value) {
+                        correctCount++;
+                    }
+                }
+                function next() {
+                    mainWindow.innerHTML = "";
+                    if (index < 5) {
+                        createView(questions[question + index]);
+                    } else {
+                        result();
+                    }
+                }
+                function result() {
+                    var displayResult = document.createElement("label");
+                    console.log(correctCount);
+                    var percent = correctCount / 5 * 100;
+                    var resultMain = "failed";
+                    if (percent >= 60) {
+                        resultMain = "pass";
+                    }
+                    var resultMsg1 = correctCount + "correct answer " + seconds + "seconds\n Percentage is " + percent + "\n Result " + resultMain;
+                    displayResult.innerHTML = resultMsg1;
+                    mainWindow.appendChild(displayResult);
+                }
+                var startButton = document.getElementById("startButton").addEventListener("click", onStart)
             }
-        ];
-        function startTest() {
-            mainWindow.innerHTML = "";
-            createView(questions[question]);
-        }
+        )();
     </script>
 </body>
 

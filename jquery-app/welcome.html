@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome</title>
+    <script src="jquery-3.3.1.js"></script>
+</head>
+<body>
+    <div id="header"></div>
+    <div class="main"></div>
+    <input type="button" value="getMessage" id="button">
+    <script>
+        $('#header').html('<h1>Welcome to Jquery</h1>');
+        $('#button').click(function(){
+            $('#header').html("<h1>Button Click<h1>")
+            console.log("Hello Button Click")
+        })
+        $(".main").html("Hello");
+    </script>
+</body>
+</html>
