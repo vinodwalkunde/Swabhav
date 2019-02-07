@@ -14,23 +14,26 @@
     Enter Task:
     <input type="text" name="message" id="Name" placeholder="Write">
     <input type="button" value="ADD" id="Add">
+    <!-- <input type="button" value="ArchiveData" id="Archive"> -->
     <span id="alert" style="color:red"></span>
     <div id="mainTask">
 
     </div>
 
-    <script >
+    <script>
         var list = [];
-        var retriveList=[];
+        var archiveList = [];
         var counter = 0;
         var count = 0;
         var button1 = document.getElementById("Add");
         button1.addEventListener("click", add);
 
+        // var button2 = document.getElementById("Archive");
+        // button2.addEventListener("click", archiveDisplay);
 
         function add() {
             var item = document.getElementById("Name").value;
-            var date=Date();
+            var date = Date();
             var data = {};
             data.text = item;
             data.date = date;
@@ -46,7 +49,7 @@
         }
         function validate(item) {
             if (item == "") {
-                document.getElementById("alert").innerHTML = "please Enter Name";
+                document.getElementById("alert").innerHTML = "please Enter Task";
                 return true;
             }
             return false;
@@ -57,9 +60,9 @@
             var checkBox = document.createElement("input");
             checkBox.type = "checkbox";
             var button = document.createElement("BUTTON");
-            var time=document.createElement("span");
+            var time = document.createElement("span");
 
-            time.innerHTML=moment(itemList[number].date).fromNow();
+            time.innerHTML = moment(itemList[number].date).fromNow();
 
             label.innerHTML = itemList[number].text;
             checkBox.checked = itemList[number].isCompleted;
@@ -82,9 +85,18 @@
         function storeInLocalStorage(list) {
             localStorage.setItem("itemList", JSON.stringify(list));
         }
-        function storeRetriveData(list){
-            localStorage.setItem("retriveList",JSON.stringify(list));
+
+        function storeRetriveData(data) {
+            var obj = JSON.parse(localStorage.getItem("retriveList"));
+            if (obj != null) {
+                for (var i = 0; i < obj.length; i++) {
+                    archiveList.push(obj[i]);
+                }
+            }
+            archiveList.push(data);
+            localStorage.setItem("retriveList", JSON.stringify(archiveList));
         }
+
         function retriveData() {
             var rList = JSON.parse(localStorage.getItem("itemList"));
             console.log(rList)
@@ -128,7 +140,7 @@
             var childId = event.srcElement.id;
             var msg = document.getElementById(childId).parentNode.id;
             console.log(msg)
-            list[msg].isDeleted=true;
+            list[msg].isDeleted = true;
             storeRetriveData(list[msg]);
             list.splice(msg, 1);
             storeInLocalStorage(list);

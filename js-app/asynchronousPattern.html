@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Asynchronous Pattern</title>
+</head>
+
+<body>
+    <script>
+        var dataService = function () {
+            var service = {};
+            service.getData = function () {
+                return Math.random() * 10;
+            }
+            service.getDataSync = function (cb) {
+                var r = Math.random() * 100;
+                if (r > 50) {
+                    cb("Succes: " + r);
+                } else {
+                    cb("Failed: " + r);
+                }
+            }
+            service.getDataAsync = function (cb) {
+                setTimeout(function () {
+                    var r = Math.random() * 1000;
+                    if (r > 500) {
+                        cb("Succes: " + r);
+                    } else {
+                        cb("Failed: " + r);
+                    }
+                }, 0);
+            }
+            return service;
+        }();
+        var r = dataService.getData();
+        console.log(r);
+        dataService.getDataSync(function (r) {
+            console.log("Result: " + r);
+        });
+        dataService.getDataAsync(function (r) {
+            console.log("Result In Async: " + r);
+        })
+        console.log("End Of Script");
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Module Pattern</title>
+</head>
+
+<body>
+    <div id="error" style="color: red"></div>
+    <script>
+        var empService = function () {
+            console.log("empService created");
+            var obj = {};
+            var _firstName, _lastName;
+            obj.setFirstName = function (fName) {
+                if (fName.length > 0) {
+                    _firstName = fName;
+                }
+            };
+            obj.setLastName = function (lName) {
+                if (lName.length > 0) {
+                    _lastName = lName;
+                }
+            }
+            obj.getFullName = function () {
+                return _firstName + " " + _lastName;
+            }
+            return obj;
+        }();
+        empService.setFirstName("Sachin");;
+
+        empService.setLastName("Tendulkar");
+        console.log(empService.getFullName());
+        console.log(empService);
+                // console.log(empService);
+
+    </script>
+    <script>
+
+        var swabhavTech = function () {
+            var obj = {}
+            obj.cubeOfEven = function (number) {
+                if (number % 2 == 0) {
+                    return (number * number * number)
+                } else {
+                    throw "Not Even Number";
+                }
+            }
+
+            return obj;
+        }();
+
+        // try {
+        console.log(swabhavTech.cubeOfEven(2));
+        console.log(swabhavTech.cubeOfEven(3));
+        // }
+        // catch (err) {
+        //     document.getElementById("error").innerHTML = err;
+        // }
+    </script>
+</body>
+
+</html>
