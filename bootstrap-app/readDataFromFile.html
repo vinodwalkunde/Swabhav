@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Employee Data</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="jquery-3.3.1.js"></script>
+    <script src="js/bootstrap.js"> </script>
+    <script src="jquery.csv.js"></script>
+</head>
+
+<body class="container">
+    <br>
+    <button id="button" class="btn btn-default">Get data</button>
+
+    <br>
+    <br>
+    <img src="810.gif" alt="loading" id="loading">
+    <span id="error" style="color:red"></span>
+    <div id="table"></div>
+    <script>
+        $('#button').on('click', function () {
+            $('#loading').show();
+            $.ajax({
+                url: 'https://swabhav-tech.firebaseapp.com/emp.txt',
+                type: 'get',
+                success: function (data) {
+                    setTimeout(function () {
+
+                        $('#loading').hide();
+                        createTable(data);
+                    }, 2000)
+                }, error: function () {
+                    $('#loading').show();
+                    setTimeout(function () {
+                        $('#loading').hide();
+                        $('#error').html("Try Agin Later")
+                    }, 2000)
+
+                }
+            })
+        })
+
+        function createTable(data) {
+            var result = $.csv.toArrays(data);
+            $('#loading').hide();
+            var string;
+            string = "<table class='table table-striped'>";
+            string += "<th>EmployeeId</th><th>Employee name</th> <th>Employee designation</th> <th>Manager id</th><th> Date of joining</th><th>Salary</th> <th>Commission</th> <th>Department number</th>";
+            for (var i = 0; i < result.length; i++) {
+
+                string += '<tr>';
+                var row = result[i];
+                for (var j = 0; j < row.length; j++) {
+                    string += `<td>${row[j]}</td>`;
+                }
+                string += "</tr>";
+            }
+            string += "</table>";
+            string = string.replace(/['"]+/g, '');
+            $("#table").html(string);
+            console.log(string);
+        }
+        $('#loading').hide();
+    </script>
+</body>
+
+</html>
