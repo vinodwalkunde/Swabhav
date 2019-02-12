@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Toggle 2</title>
+    <script src="angular.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="jquery-3.3.1.js"></script>
+    <script src="js/bootstrap.js"> </script>
+</head>
+
+<body>
+    <section ng-controller="toggleController">
+        <button class="btn btn-default" ng-click="onClickFunction()">Toggle</button>
+        <br>
+        <img ng-hide="click" ng-src="spinner.gif" alt="Loading">
+    </section>
+    <script>
+        angular.module('toggle', [])
+            .controller('toggleController', function ($scope) {
+                $scope.click = true;
+                $scope.onClickFunction = function () {
+                    $scope.toggle = {
+                        picture: "spinner.png"
+                    }
+                    if ($scope.click == true) {
+                        $scope.click = false;
+                    } else {
+                        $scope.click = true;
+                    }
+                }
+            });
+    </script>
+</body>
+
+</html>

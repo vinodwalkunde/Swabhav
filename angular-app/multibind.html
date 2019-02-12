@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MultiBind</title>
+    <script src="angular.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="jquery-3.3.1.js"></script>
+    <script src="js/bootstrap.js"> </script>
+</head>
+
+<body ng-controller="bindCtrl" >
+    <div><br>
+        <label>Task:</label><input type="text" ng-model="selectedTask"><br>
+        <label>Background Color:</label><select ng-model="selectedBColor" ng-options="x for x in color"></select><br>
+        <label>Font Color:</label><select ng-model="selectedFColor" ng-options="x for x in color"></select><br>
+        <label>Font Family:</label><select ng-model="selectedFontFamily" ng-options="x for x in font"></select><br>
+        <label>Font Size:</label> <input type="number" ng-model="selectedSize"><br>
+    </div>
+    <br>
+    <br>
+    <textarea cols="150" rows="30" ng-style="{'background-color':selectedBColor , 'color':selectedFColor, 'font-size':selectedSize+'px','font-family':selectedFontFamily}">{{selectedTask}}</textarea>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('bindCtrl', function ($scope) {
+            $scope.color = ["Red", "Blue", "Green","black"];
+            $scope.font=["times","calibri","Agency FB","Fantasy","Comic Sans MS"];
+        });
+    </script>
+</body>
+
+</html>

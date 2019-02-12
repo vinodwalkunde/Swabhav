@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Arrow Function</title>
+</head>
+
+<body>
+    <script>
+        let processData = function (no, cb) {
+            let r = Math.random() * no;
+            if (r > 5) {
+                cb(r * 5);
+            } else {
+                cb(r);
+            }
+        }
+        processData(100, function (r) {
+            console.log("Inside Normal Function")
+            console.log(r);
+        })
+        processData(100, (r) => console.log(r))
+
+        setTimeout(() => {
+            console.log("First Line");
+            console.log("after 3 Sec");
+        }, 3000)
+    </script>
+    <script>
+        function employee(n) {
+            this.name = n;
+            this.display = function () {
+                setTimeout(function () {
+                    console.log(this.name + " After 3 sec with Normal Function");
+                }, 3000)
+            }
+            this.display1 = function () {
+                setTimeout(() => {
+                    console.log(this.name + " After 3 sec with Arrow");
+                }, 3000)
+            }
+        }
+        let e1 = new employee("Devang");
+        e1.display();
+        e1.display1();
+
+        let e2 = new employee("Vinod");
+        console.log(e1);
+        console.log(e2);
+        console.log("End of Script");
+
+
+    </script>
+</body>
+
+</html>

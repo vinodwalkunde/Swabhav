@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ProtoType Pattern</title>
+</head>
+
+<body>
+    <script>
+        function Employee(fName, lName) {
+            this.firstName = fName;
+            this.lastName = lName;
+        }
+        console.log(Employee);
+        Employee.prototype.getFullName=function(){
+            return this.firstName+" "+this.lastName;
+        }
+        let e1=new Employee("Sachin","Tendulkar");
+        console.log(e1);
+        console.log(e1.getFullName());
+        console.log(e1.__proto__==Employee.prototype)
+
+        let e2=new Employee("Swabhav","TechLabs");
+        console.log(e2);
+        console.log(e2.getFullName());
+        console.log(e2.__proto__==Employee.prototype);
+
+        console.log(e1.__proto__==e2.__proto__);
+    </script>
+</body>
+
+</html>

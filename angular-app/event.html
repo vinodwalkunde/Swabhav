@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="student">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Event</title>
+    <script src="angular.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="jquery-3.3.1.js"></script>
+    <script src="js/bootstrap.js"> </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <br>
+        <br>
+        <section ng-controller="studentController">
+            <button class="btn btn-default" ng-click="onClickFunction()">Show Details</button>
+            <div ng-hide="click">
+                <p>{{student.name}}</p>
+                <p>{{student.addres}}</p>
+                <p>{{student.cgpa}}</p>
+                <img ng-src="{{student.picture}}" />
+            </div>
+        </section>
+
+    </div>
+    <script>
+        angular.module('student', [])
+            .controller('studentController', ["$scope", "$timeout",
+                function ($scope, $timeout) {
+                    $scope.click = true;
+                    $timeout(function () {
+                        $scope.click = false;
+                        $scope.student = {
+                            name: "Vinod",
+                            addres: "lalbag",
+                            cgpa: 7.5,
+                            picture: "img.png"
+                        }
+                    }, 3000)
+                    $timeout(function () {
+                        $scope.student.name = "Kuntan"
+                    }, 6000)
+
+                }]);
+
+    </script>
+</body>
+
+</html>

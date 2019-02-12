@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Student App 2</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="jquery-3.3.1.js"></script>
+    <script src="js/bootstrap.js"> </script>
+</head>
+
+<body>
+    <h1 class="jumbotron">
+        <div class="text-center">Student Page</div>
+    </h1>
+    <form data-toggle="validator" id="form">
+        <div class="form-group">
+            <label for="exampleInputNumber">Roll Number</label>
+            <input type="number" min="0" max="999" class="form-control" id="inputRollNumber"
+                placeholder="Enter Roll Number" required>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputName">Name</label>
+            <input type="name" class="form-control" id="inputName" placeholder="Enter Name" required>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputAge">Age</label>
+            <input type="number" min="0" max="100" class="form-control" id="inputAge" placeholder="Enter Age in years"
+                required>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail">Email Id</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Enter Email Id" required>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputDate">Date</label>
+            <input type="date" class="form-control" id="inputDate" placeholder="Enter Date In dd/mm/yyyy" required>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputGender">Gender</label>
+            <select class="form-control" id="inputGender" required>
+                <option value="True">Male</option>
+                <option value="False">Female</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-default" id="submit">Submit</button>
+        </div>
+    </form>
+    <button id="button" class="btn btn-default">Display</button>
+    <span id="error" style="color:red"></span>
+    <br>
+    <img src="spinner.gif" alt="loading" id="loading">
+    <br>
+    <div id="table"></div>
+    <script>
+        $('#loading').hide();
+
+        $('#submit').on("click",
+            function () {
+                $('#loading').show();
+                $.post("http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/",
+                    {
+                        "rollNo": $('#inputRollNumber').val(),
+                        "name": $('#inputName').val(),
+                        "age": $('#inputAge').val(),
+                        "email": $('#inputEmail').val(),
+                        "date": $('#inputDate').val(),
+                        "isMale": $('#inputGender').val()
+
+                    },
+                    function (data, status) {
+                        $('#loading').hide();
+                        alert("Data: " + data + "\nStatus: " + status);
+                    }
+                );
+            });
+        $('#button').on('click', function () {
+            $('#loading').show();
+            display();
+        })
+
+        function createTable(data) {
+            var result = data;
+            var string;
+            string = "<table class='table table-striped'>";
+            string += "<th>Roll Number</th><th>Student name</th> <th>Age </th> <th>Date</th>";
+            for (var i = 0; i < result.length; i++) {
+                var rollNumber = result[i].rollNo;
+                var name = result[i].name;
+                var age = result[i].age;
+                var date = result[i].date;
+                string += "<tr value=" + rollNumber + ">";
+                string += "<td>" + rollNumber + "</td>";
+                string += "<td>" + name + "</td>";
+                string += "<td>" + age + "</td>";
+                string += "<td>" + date + "</td>";
+                string += "<td><button type='button' id='delete' class='btn btn-default'>Delete</button></td>"
+                string += "<td><button type='button' id='edit' class='btn btn-default'>Edit</button>"
+                string += "<span id='ok' class='glyphicon glyphicon-ok btn disabled' aria-hidden='true'></span>"
+                string += "<span id='remove' class='glyphicon glyphicon-remove btn disabled' aria-hidden='true'></span></td>"
+                string += "</tr>";
+            }
+
+            string += "</table>";
+            // string = string.replace(/['"]+/g, '');
+            $("#table").html(string);
+            // console.log(string);
+        }
+
+        $(document).on('click', '#delete', function () {
+            var answer = confirm("Do You Want Delete")
+            if (answer) {
+                var number = $(this).parent().siblings(":first").text();
+                console.log(number);
+                var string = 'http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/' + number;
+                $.ajax({
+                    url: string,
+                    type: 'DELETE',
+                    success: function (result) {
+                        alert(result + " Data Deleted")
+                        display();
+                    }, error: function () {
+                        alert("Error")
+                    }
+                });
+                return;
+            } else {
+                return;
+            }
+        });
+        function display() {
+            $.ajax({
+                url: 'http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/',
+                type: 'get',
+                success: function (data) {
+                    $('#loading').hide();
+                    createTable(data);
+                }, error: function () {
+                    $('#loading').hide();
+                    $('#error').html("Try Again Later")
+                }
+            })
+        }
+        $(document).on('click', '#edit', function () {
+            var $editBtn = $(this);
+            var number = $(this).parent().siblings(":first").text();
+            $.ajax({
+                url: 'http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/' + number,
+                type: 'get',
+                success: function (data) {
+                    $('#inputRollNumber').val(data.rollNo)
+                    $('#inputName').val(data.name)
+                    $('#inputAge').val(data.age)
+                    $('#inputEmail').val(data.email)
+                    $('#inputDate').val(data.date)
+
+                    if (data.isMale) {
+                        console.log('male')
+                        $('#inputGender').val('True').change();
+                    } else {
+                        console.log("female")
+                        $('#inputGender').val('False').change();
+                    }
+
+                    $(".glyphicon").addClass("disabled");
+
+                    $editBtn.siblings().removeClass("disabled");
+                }
+            })
+        });
+        function clearForm() {
+            $('#inputRollNumber').val("");
+            $('#inputName').val("");
+            $('#inputAge').val("");
+            $('#inputEmail').val("");
+            $('#inputDate').val("");
+            $('#inputGender').val("");
+        }
+        $(document).on('click', '#ok', function () {
+            var obj = {
+                "rollNo": $('#inputRollNumber').val(),
+                "name": $('#inputName').val(),
+                "age": $('#inputAge').val(),
+                "email": $('#inputEmail').val(),
+                "date": $('#inputDate').val(),
+                "isMale": $('#inputGender').val()
+            };
+
+            $.ajax({
+                url: "http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/" + $('#inputRollNumber').val(),
+                data: obj,
+                type: 'PUT',
+                success: function (data, status) {
+                    alert("Data: " + data + "\nStatus: " + status);
+                    clearForm();
+                    display();
+                }, error: function () {
+                    $('#loading').hide();
+                    alert("Error Occure while updating")
+                }
+            });
+        });
+        $(document).on('click', '#remove', function () {
+            clearForm();
+            display();
+        });
+
+    </script>
+</body>
+
+</html>

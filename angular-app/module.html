@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="moduleA">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Module</title>
+    <script src="angular.js"></script>
+  
+</head>
+
+<body>
+    {{company|uppercase}}
+    <section ng-controller='controllerA'>
+        <h1>{{controllerA.message }}</h1>
+    </section>
+    <section ng-controller='controllerB'>
+        <h1>{{controllerB.message }}</h1>
+    </section>
+    <section ng-controller='controllerC'>
+        <h1>{{controllerC.message }}</h1>
+    </section>
+
+    <script>
+        angular.module('moduleA', ['moduleB', 'moduleC']).
+            controller('controllerA', function ($scope, $rootScope) {
+                console.log('Inside Controller A');
+                $scope.controllerA = {
+                    message: "Controller A Says Hello"
+                }
+                console.log($rootScope)
+                $rootScope.company = "Aurionpro";
+            });
+        angular.module('moduleB', []).
+            controller('controllerB', function ($scope, $rootScope) {
+                console.log('Inside Controller B');
+                $scope.controllerB = {
+                    message: "Controller B Says Hello"
+                }
+            });
+        angular.module('moduleC', []).
+            controller('controllerC', function ($scope, $rootScope) {
+                console.log('Inside Controller C');
+                $scope.controllerC = {
+                    message: "Controller C Says Hello"
+                }
+            });
+    </script>
+</body>
+
+</html>

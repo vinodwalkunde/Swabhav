@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Toggle</title>
+    <script src="angular.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="jquery-3.3.1.js"></script>
+    <script src="js/bootstrap.js"> </script>
+</head>
+
+<body><br>
+    <section ng-init="change=true">
+    <button class="btn btn-default" ng-click="change=!change">Toggle</button>
+    <br>
+    <img ng-hide="change" ng-src="spinner.gif" alt="Loading">
+</section>
+
+</body>
+
+</html>

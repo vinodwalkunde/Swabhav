@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="swabhavTechlab">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Binding</title>
+    <script src="angular.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="jquery-3.3.1.js"></script>
+    <script src="js/bootstrap.js"> </script>
+</head>
+
+<body>
+    <section ng-controller="binding">
+        <h3> One Time Binding </h3>
+        <div>{{employee.id}}</div>
+        <div>{{employee.name}}</div>
+        <div>{{employee.salary}}</div>
+    </section>
+    <section ng-controller="binding">
+        <h3> One Way Binding </h3>
+        <span ng-bind="employee.id"></span><br>
+        <span ng-bind="employee.name"></span><br>
+        <span ng-bind="employee.salary"></span><br>
+    </section>
+    <section ng-controller="binding">
+        <h3> Two Way Binding </h3>
+        <p>Id : <input type="text" ng-model="employee.id" placeholder="Enter Id here"></p>
+        <p>name : <input type="text" ng-model="employee.name" placeholder="Enter name here"></p>
+        <p>salary : <input type="text" ng-model="employee.salary" placeholder="Enter salary here"></p>
+        <div>{{employee.id}}</div>
+        <div>{{employee.name}}</div>
+        <div>{{employee.salary}}</div>
+    </section>
+
+    <script>
+        angular.module('swabhavTechlab', [])
+            .controller('binding', ['$scope', function ($scope) {
+                $scope.employee = {
+                    id: 101,
+                    name: "Vinod",
+                    salary: 60000
+                }
+            }])
+    </script>
+</body>
+
+</html>
