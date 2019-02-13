@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Promise Chaining</title>
+    <title>Promise Hell</title>
 </head>
 
 <body>
@@ -23,18 +23,26 @@
             }
             return service;
         }();
-        dataService.cubeOfEven(2)
-            .then((result) => {
-                return dataService.cubeOfEven(result);
+        dataService.cubeOfEven(4)
+            .then((r) => {
+                console.log(r);
+                dataService.cubeOfEven(r)
+                    .then((r) => {
+                        console.log(r)
+                        dataService.cubeOfEven(r)
+                            .then((r) => {
+                                console.log(r)
+                            })
+                            .catch((e) => {
+                                console.log(e);
+                            })
+                    })
+                    .catch((e) => {
+                        console.log(e);
+                    })
             })
-            .then((result) => {
-                return dataService.cubeOfEven(result);
-            })
-            .then((result) => {
-                console.log(result);
-            })
-            .catch((result) => {
-                console.log(result);
+            .catch((e) => {
+                console.log(e);
             })
     </script>
 </body>
