@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="swabhavtechlab">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Number API</title>
+    <script src="angular.js"></script>
+</head>
+
+<body>
+    <div ng-controller='controller'>
+        <form>
+            <input ng-model="number">
+            <input type="submit" ng-click="submitForm(number)" value="Show data">
+        </form>
+        <pre>{{ data }}</pre>
+
+    </div>
+    <script>
+        var app = angular.module('swabhavtechlab', []);
+        app.controller('controller', function ($scope, $http) {
+            $scope.number;
+            $scope.submitForm = function (number) {
+                $http({
+                    method: "GET",
+                    url: "http://numbersapi.com/" + number
+                }).then(function mySuccess(response) {
+                    $scope.data = response.data;
+                }, function myError(response) {
+                    $scope.data = response.statusText;
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

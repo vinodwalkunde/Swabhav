@@ -13,7 +13,7 @@
     <section ng-controller="firstController">
         <h1>Even</h1>
         Enter: <input type="number" ng-model="checknumber" ng-style="{'background-color':color}"
-            (click)="expression"></input>
+        ng-keypress="showEven($event)"></input>
         {{checknumber}}
     </section>
     <section ng-controller="SecondController">
@@ -34,17 +34,22 @@
                         return false;
                     }
                 }
+                service.prime=function(a){
+
+                }
 
                 return service;
             }
             ])
             .controller('firstController', ['$scope', 'mathSrc', function ($scope, mathSrc) {
+                $scope.showEven = (event) => {
                 var num = mathSrc.even($scope.checknumber);
                 console.log($scope.checknumber);
                 if (num == true) {
                     $scope.color = 'Red';
                 } else {
                     $scope.color = 'Green';
+                }
                 }
             }])
             .controller('SecondController', ['$scope', 'mathSrc', function ($scope, mathSrc) {
