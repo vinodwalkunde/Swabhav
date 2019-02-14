@@ -14,8 +14,8 @@ public class EmployeeParser {
 			String string = line;
 			String[] linedata = string.split(split);
 			Integer id = Integer.parseInt(linedata[0]);
-			String name = linedata[1];
-			String designation = linedata[2];
+			String name = linedata[1].replace("\'","");
+			String designation = linedata[2].replace("\'","");
 			Integer mangerId=linedata[3].equalsIgnoreCase("NULL")?null:Integer.parseInt(linedata[3]);
 		
 			Employee employee = new Employee(id, mangerId, name, designation);

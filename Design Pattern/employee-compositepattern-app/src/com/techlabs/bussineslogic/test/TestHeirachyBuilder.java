@@ -1,5 +1,6 @@
 package com.techlabs.bussineslogic.test;
 
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -19,7 +20,18 @@ public class TestHeirachyBuilder {
 		
 		EmployeeHeirarchyBuilder heirarchyBuilder=new EmployeeHeirarchyBuilder(empSet);
 		Employee root=heirarchyBuilder.getRoot();
+		
 		root.display();
+		StringBuffer sb=root.displayDetails();
+		String employee=sb.toString();
+		createXml(employee);
+		
+		System.out.println(root.displayDetails());
+	}
+	public static void createXml(String sb) throws Exception {
+		FileWriter fileWriter =new FileWriter("Employee.xml");
+		fileWriter.write(sb);
+		fileWriter.close();
 	}
 
 }

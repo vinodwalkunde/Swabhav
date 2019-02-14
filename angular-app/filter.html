@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='SwabhavTechLabs'>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="angular.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <section ng-init="discreption='When you truly believe in what you are doing, it shows.
+     And it pays. Winners in life are those who are excited about where theyre going.'">
+        <p>{{discreption|summary:100}}</p>
+    </section>
+    <section ng-init="income='50000'" style="color:{{income|salary}}">
+        <p>{{income}}</p>
+    </section>
+    <script>
+        var app = angular.module('SwabhavTechLabs', []);
+        app.filter('summary', function () {
+            return function (item, length) {
+                if (item.length > length) {
+                    item = item.substr(0, length);
+                    return item + "...";
+                } else {
+                    return item;
+                }
+            }
+        })
+        app.filter('salary', function () {
+            return function (item) {
+                if (item < 20000) {
+                    return "yellow";
+                }
+                if (item => 20000 && item <= 50000) {
+                    return "green";
+                }
+                if (item > 50000) {
+                    return "red";
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

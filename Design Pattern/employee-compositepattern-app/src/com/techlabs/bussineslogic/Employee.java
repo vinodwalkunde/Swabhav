@@ -8,6 +8,7 @@ public class Employee implements Comparable<Employee> {
 	private Integer mangerId;
 	private String name;
 	private String designation;
+	private StringBuffer parallel=new StringBuffer();
 	private static String compositeBuilder = " ";
 	private List<Employee> reportee = new ArrayList<Employee>();
 
@@ -25,6 +26,17 @@ public class Employee implements Comparable<Employee> {
 			e.display();
 		}
 		compositeBuilder = len;
+	}
+	public StringBuffer displayDetails() {
+		parallel.append("<Employee");
+		parallel.append(" name=\""+name+"\" id=\""+empId+"\" designation=\""+designation+"\">");
+		for(Employee employee:reportee) {
+			parallel.append("<Reportee>");
+			parallel.append(" "+employee.displayDetails());
+			parallel.append("</Reportee>");
+		}
+		parallel.append("</Employee>");
+		return parallel;
 	}
 
 	public Integer getEmpId() {

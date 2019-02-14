@@ -12,7 +12,7 @@ public class EmployeeHeirarchyBuilder {
 		for (Employee employee : empSet) {
 			empMap.put(employee.getEmpId(), employee);
 		}
-		getHeirarchy();
+		getHeirachy();
 	}
 
 	public Employee getRoot() {
@@ -23,18 +23,14 @@ public class EmployeeHeirarchyBuilder {
 		}
 		return rootEmployee;
 	}
-	
-	public void getHeirarchy() {
+
+	public void getHeirachy() {
 		for (Map.Entry<Integer, Employee> entry : empMap.entrySet()) {
-			for(Map.Entry<Integer, Employee> repotee : empMap.entrySet()) {
-				if(repotee.getValue().getMangerId()!=null) {
-					if(entry.getKey().equals(repotee.getValue().getMangerId())) {
-						entry.getValue().addRepotee(repotee.getValue());
-					}
-				}else {
-					rootEmployee=repotee.getValue();
-				}
+			if (empMap.containsKey(entry.getValue().getMangerId())) {
+				Employee employee = empMap.get(entry.getValue().getMangerId());
+				employee.addRepotee(entry.getValue());
 			}
 		}
 	}
+
 }
