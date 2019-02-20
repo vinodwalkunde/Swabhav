@@ -1,0 +1,39 @@
+<section>
+    <label>Search</label>
+    <p><input type="text" ng-model="test.designation" placeholder="Search by designation"></p>
+    <p><input type="text" ng-model="test.name" placeholder="Search by Name"></p>
+
+    <table class="table-condensed">
+        <tr>
+            <th>Employee Id</th>
+            <th>Employee Name</th>
+            <th>Designation</th>
+            <th>Manager Id</th>
+            <th>Joining Date</th>
+            <th>Salary</th>
+            <th>Commision</th>
+            <th>Department</th>
+            <th>Action</th>
+            <!-- <th>Action</th> -->
+        </tr>
+        <tbody ng-repeat="i in empArray | filter:test">
+            <tr>
+                <td>{{i.id}}</td>
+                <td>{{i.name}}</td>
+                <td>{{i.designation}}</td>
+                <td>{{i.mangerId}}</td>
+                <td>{{i.joiningDate}}</td>
+                <td>{{i.salary}}</td>
+                <td>{{i.commission}}</td>
+                <td>{{i.departmentId}}</td>
+                <!-- <td><button type="button" ng-click="onEditClick(i)" class="btn btn-default"><i
+                            class="glyphicon glyphicon-pencil">
+                        </i></button></td> -->
+                <td><button type="button" ng-click="removeRow(i.id)" class="btn btn-danger"><i
+                            class="glyphicon glyphicon-trash">
+                        </i></button></td>
+            </tr>
+        </tbody>
+    </table>
+
+</section>

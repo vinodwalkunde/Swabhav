@@ -1,0 +1,32 @@
+<section>
+    <form name="studenteditform">
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" class="form-control" name="selectedName" ng-model="selectedName" required>
+        </div>
+        <div class="form-group">
+            <label>Age:</label>
+            <input type="number" class="form-control" ng-model="selectedAge" name="age" required>
+        </div>
+        <div class="form-group">
+            <label>Roll Number:</label>
+            <input type="number" class="form-control" ng-model="selectedRollNo" required>
+        </div>
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="email" class="form-control" name="email" ng-model="selectedEmail" required>
+
+        </div>
+        <div class="form-group">
+            <label>Gender:</label>
+            <select class="form-control" ng-model="selectedGender" ng-options="item for item in gender"
+                required></select>
+        </div>
+        <div class="form-group">
+            <label>Date:</label>
+            <input type="date" class="form-control" ng-model="selectedDate" required>
+        </div>
+        <button type="submit" ng-click="update()" ng-disabled="studenteditform.$invalid" class="btn btn-default">Update</button>
+        <a href="#/edit/{{id}}" class="btn btn-default">Back</a>
+    </form>
+</section>

@@ -12,20 +12,20 @@
     <script src="js/bootstrap.js"> </script>
 </head>
 
-<body>
-    <section ng-controller="binding">
+<body ng-controller="binding">
+    <section >
         <h3> One Time Binding </h3>
-        <div>{{employee.id}}</div>
-        <div>{{employee.name}}</div>
-        <div>{{employee.salary}}</div>
+        <div>{{::employee.id}}</div>
+        <div>{{::employee.name}}</div>
+        <div>{{::employee.salary}}</div>
     </section>
-    <section ng-controller="binding">
+    <section >
         <h3> One Way Binding </h3>
-        <span ng-bind="employee.id"></span><br>
-        <span ng-bind="employee.name"></span><br>
-        <span ng-bind="employee.salary"></span><br>
+        <span>{{employee.id}}</span><br>
+        <span >{{employee.name}}</span><br>
+        <span >{{employee.salary}}</span><br>
     </section>
-    <section ng-controller="binding">
+    <section>
         <h3> Two Way Binding </h3>
         <p>Id : <input type="text" ng-model="employee.id" placeholder="Enter Id here"></p>
         <p>name : <input type="text" ng-model="employee.name" placeholder="Enter name here"></p>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="swabhavtechlabs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Student Service</title>
+    <script src="angular.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="jquery-3.3.1.js"></script>
+    <script src="js/bootstrap.js"> </script>
+</head>
+
+<body ng-controller="controller">
+    <form ng-submit="add($event)" name="studentform">
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" class="form-control" name="selectedName" ng-model="selectedName" required>
+            <span ng-show="studentform.selectedName.$touched && studentform.selectedName.$invalid"
+                style="color: red">The name is required.</span>
+            </p>
+        </div>
+        <div class="form-group">
+            <label>Age:</label>
+            <input type="number" class="form-control" ng-model="selectedAge" name="age" required>
+        </div>
+        <div class="form-group">
+            <label>Roll Number:</label>
+            <input type="number" class="form-control" ng-model="selectedRollNo" required>
+        </div>
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="email" class="form-control" name="email" ng-model="selectedEmail" required>
+            <span ng-show="studentform.$dirty && studentform.email.$invalid" style="color: red">This field is invalid
+            </span>
+        </div>
+        <div class="form-group">
+            <label>Gender:</label>
+            <select class="form-control" ng-model="selectedGender" ng-options="item for item in gender"
+                required></select>
+        </div>
+        <div class="form-group">
+            <label>Date:</label>
+            <input type="date" class="form-control" ng-model="selectedDate" required>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+    <br>
+    <button type="button" class="btn btn-default" ng-click="display()">Display</button>
+    <br>
+    <br>
+    <table class="table table-striped" ng-hide="tableHide">
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Roll Number</th>
+            <th>Email</th>
+            <th>Date</th>
+        </tr>
+        <tbody ng-repeat="i in studentArray">
+            <tr>
+                <td>{{i.name}}</td>
+                <td>{{i.age}}</td>
+                <td>{{i.rollNo}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.date|date:'short'}}</td>
+                <td><button type="button" id="{{(i.id)}}" ng-click="delete($event)" class="btn btn-danger"><i
+                            class="glyphicon glyphicon-trash">
+                        </i></button></td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        angular.module('swabhavtechlabs', [])
+            .factory('StudentService', ['$log', '$q', '$http', function ($log, $q, $http) {
+                var studentService = {};
+                studentService.getStudentData = function () {
+                    return $q(function (resolve, reject) {
+                        $http({
+                            method: 'GET',
+                            url: 'http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/'
+                        }).then(function (response) {
+                            resolve(response.data);
+                        })
+                    })
+                }
+                studentService.addStudent = function (studentObject) {
+                    return $q(function (resolve, reject) {
+                        $http.post('http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/', studentObject)
+                            .then(function (response) {
+                                resolve(response)
+                            })
+                    })
+                }
+                studentService.delete = function (studentId) {
+                    console.log(studentId);
+                    // return $q(function (resolve, reject) {
+                        $http.delete('http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/' + studentId)
+                            // .then(function (response) {
+                            //     resolve(response)
+                            // })
+                    // })
+                }
+                return studentService;
+            }])
+            .controller("controller", function ($scope, StudentService) {
+                $scope.tableHide = true;
+                $scope.studentArray = [];
+                $scope.gender = ["MALE", "FEMALE"];
+
+                $scope.add = function () {
+                    var date = new Date();
+                    var gender = true;
+                    var randomNumber = date.valueOf();
+                    if ($scope.selectedGender == "FEMALE") {
+                        gender = false
+                    }
+                    let studentObject = {
+                        id: randomNumber,
+                        rollNo: $scope.selectedRollNo,
+                        name: $scope.selectedName,
+                        age: $scope.selectedAge,
+                        email: $scope.selectedEmail,
+                        date: $scope.selectedDate,
+                        gender: gender
+                    }
+                    StudentService.addStudent(studentObject)
+                        .then((result) => {
+                            alert("Status:" + result.statusText)
+
+                        })
+
+                }
+                $scope.display = function () {
+                    $scope.tableHide = false;
+                    StudentService.getStudentData()
+                        .then((result) => {
+                            $scope.studentArray = result;
+                            console.log($scope.studentArray)
+                        })
+                }
+                $scope.delete = function (event) {
+                    if (confirm("confirm")) {
+                        // console.log(event.target.id)
+                        StudentService.delete(event.target.id)
+                            // .then((result) => {
+                            //     alert("Status:" + result.statusText)
+                            // })
+                    }
+
+                }
+
+            })
+    </script>
+</body>
+
+</html>
