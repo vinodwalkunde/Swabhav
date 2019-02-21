@@ -11,3 +11,11 @@ angular.module('SwabhavTechLab')
     console.log("Career Created")
     $scope.data="Career Controller Say Hello";
 })
+.controller("contactController",function($scope){
+    console.log("Contact Created")
+    $scope.data="This is Contact Page";
+})
+.controller("detailController",function($scope){
+    console.log("Detail Created")
+    $scope.data="This is detail Page";
+})

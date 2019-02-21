@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <script src="jquery-3.3.1.js"></script>
     <script src="js/bootstrap.js"> </script>
-
+    <!-- <script src="moment.js"></script> -->
 </head>
 
 <body ng-controller="firstController">
@@ -23,7 +23,7 @@
     <br>
     <li ng-repeat="x in todoList" class="list-group-item">
         <span ng-bind="x.description" class="text-dark"></span>
-        <span style="color:rgb(125, 100, 237)">&nbsp;&nbsp;{{x.date|date: 'short'}}</span>
+        <span style="color:rgb(125, 100, 237)" >&nbsp;&nbsp;{{x.date }}</span>
 
     </li>
     <script>
@@ -74,7 +74,7 @@
                 $scope.todoAdd = function () {
                     var task = {
                         description: $scope.todoInput,
-                        date: new Date(),
+                        date: new moment(),
                         status: false
                     }
                     taskservice.add(task)

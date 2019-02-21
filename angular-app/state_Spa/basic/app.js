@@ -17,5 +17,15 @@ angular.module("SwabhavTechLab", ["ui.router"])
             templateUrl:'partial/career.html',
             controller:'CareerController'
         })
+        .state('career.contact',{
+            url:'/contact',
+            templateUrl:'partial/contact.html',
+            controller:'contactController'
+        })
+        .state('career.detail',{
+            url:'/detail',
+            templateUrl:'partial/detail.html',
+            controller:'detailController'
+        })
         $urlRouterProvider.otherwise('/home')
     })
