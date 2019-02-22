@@ -1,0 +1,14 @@
+<h1>Binding Expression</h1>
+<div>{{student['name']}}</div>
+<div [style.color]='cgpiToColor'>{{student['cgpi']}}</div>
+<div>{{student['job']}}</div>
+
+<div>{{student|json}} </div>
+
+<p [innerHtml]='message'></p>
+<p [innerHtml]="'message'"></p>
+<img [src]='imgUrl' [width]='width' [height]='height'>
+<br>
+<br>
+<input class="btn btn-dark" type="button" value="load" (click)='loadCourseData()'>
+<div *ngFor="let item of course">{{item}}</div>

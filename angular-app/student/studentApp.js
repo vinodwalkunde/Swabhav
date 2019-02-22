@@ -2,19 +2,24 @@ angular.module('swabhavtechlabs', ["ngRoute"])
     .constant("Url", 'http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/')
     .directive('studentFooter', function () {
         return {
-            templateUrl: "footer.html"
-        }
+            restrict: 'E',
+            scope: { obj: '=' },
+            template: '<Strong><div>Copyright ©, {{obj.prop}}&#174!</div></Strong>'
+        };
     })
     .directive('studentHeader', function () {
         return {
             templateUrl: "header.html"
         }
     })
+    .controller('MyCtrl', function ($scope) {
+        $scope.obj = { prop: "AurionPro" };
+    })
     .config(
         function ($routeProvider) {
             $routeProvider.when('/', {
                 templateUrl: 'partial/login.html',
-                controller: 'LoginController'
+                controller: 'StudentLoginController'
             })
                 .when('/displayStudent', {
                     templateUrl: 'partial/displayStudent.html',
@@ -40,11 +45,12 @@ angular.module('swabhavtechlabs', ["ngRoute"])
     )
     .factory('StudentService', ['$log', '$q', '$http', '$window', 'Url', '$rootScope', function ($log, $q, $http, $window, Url, $rootScope) {
         var studentService = {};
-
+        $rootScope.isLogin=true;
         // $rootScope.isLogin = false;
         var obj = JSON.parse($window.sessionStorage.getItem("obj"))
         if (obj != null) {
             $rootScope.login = obj.email;
+            $rootScope.isLogin=false;
         }
         studentService.getStudentById = function (id) {
             return $q(function (resolve, reject) {
@@ -97,8 +103,13 @@ angular.module('swabhavtechlabs', ["ngRoute"])
         return studentService;
     }])
 
-    .controller("displayController", function ($scope, Url, StudentService) {
-
+    .controller("displayController", function ($rootScope,$scope, $window,Url, StudentService) {
+        $scope.logout=function(){
+            $rootScope.isLogin=false;
+            console.log("logout")
+            $window.sessionStorage.removeItem("obj");
+            $window.location.reload();
+        }
         $scope.count;
         $scope.studentArray = [];
         // $window.location.reload();
@@ -197,7 +208,7 @@ angular.module('swabhavtechlabs', ["ngRoute"])
         }
 
     })
-    .controller("deleteController", function ($scope, $routeParams, $window,StudentService) {
+    .controller("deleteController", function ($scope, $routeParams, $window, StudentService) {
         $scope.id = $routeParams.UID;
         var obj = JSON.parse($window.sessionStorage.getItem("obj"))
         if (obj != null) {
@@ -210,7 +221,7 @@ angular.module('swabhavtechlabs', ["ngRoute"])
                 // $window.location.href = "#/displayStudent";
 
             }
-        }else{
+        } else {
             $window.location.href = "#/displayStudent";
         }
     })
@@ -234,11 +245,11 @@ angular.module('swabhavtechlabs', ["ngRoute"])
         return login;
     })
     .controller('StudentLoginController', ['$rootScope', '$scope', '$window', 'Login', function ($rootScope, $scope, $window, Login) {
-
-
         $scope.logininput = () => {
-            console.log("hello")
+            $rootScope.isLogin=false;
+            console.log("LogIn")
             $rootScope.login = $scope.username;
             Login.getStatusofUser($scope.username, $scope.password)
         }
+        
     }]);
