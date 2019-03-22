@@ -46,15 +46,15 @@ public class EmployeeJTree {
 				Employee repotee = entry.getValue();
 
 				DefaultMutableTreeNode empObj = tree.get(employee.getName());
-				DefaultMutableTreeNode repoteeObj=tree.get(repotee.getName());
-				
+				DefaultMutableTreeNode repoteeObj = tree.get(repotee.getName());
+
 				empObj.add(repoteeObj);
 			}
 		}
-		
-		DefaultMutableTreeNode rootTree=tree.get(rootObj.getName());
-		
-		JTree jt=new JTree(rootTree);
+
+		DefaultMutableTreeNode rootTree = tree.get(rootObj.getName());
+
+		JTree jt = new JTree(rootTree);
 		f.add(jt);
 		f.setSize(500, 500);
 		f.setVisible(true);

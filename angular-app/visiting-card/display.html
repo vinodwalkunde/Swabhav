@@ -1,0 +1,34 @@
+<div ng-transclude></div>
+<div ng-repeat='x in obj'>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Visting Card
+        </div>
+        <div class="panel-body">
+            <div class='row'>
+                <div class='col-sm-4'>
+                    Name:
+                </div>
+                <div class='col-sm-7'>
+                    {{x.name}}
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-4'>
+                    Addres:
+                </div>
+                <div class='col-sm-7'>
+                    {{x.address}}
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-4'>
+                    Phone Number:
+                </div>
+                <div class='col-sm-7'>
+                    {{x.number}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

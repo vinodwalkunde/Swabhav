@@ -4,7 +4,7 @@ angular.module('swabhavtechlabs', ["ngRoute"])
         return {
             restrict: 'E',
             scope: { obj: '=' },
-            template: '<Strong><div>Copyright ©, {{obj.prop}}&#174!</div></Strong>'
+            templateUrl: 'footer.html'
         };
     })
     .directive('studentHeader', function () {

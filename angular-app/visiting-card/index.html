@@ -5,26 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Student Index</title>
+    <title>Visiting Card</title>
     <script src="../angular.js"></script>
     <script src="../angular-route.js"></script>
-    <script src="studentApp.js"></script>
+    <script src="app.js"></script>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <script src="../jquery-3.3.1.js"></script>
     <script src="../js/bootstrap.js"></script>
-
 </head>
 
 <body>
-    <div student-header></div>
-
-    <br>
-    <br>
-    <section ng-view>
+    <section ng-controller="vistingCardController">
+        <visiting-card obj="obj">
+            <div>Welcome To Visting Card</div>
+        </visiting-card>
     </section>
-    <div ng-controller="MyCtrl">
-        <student-footer obj="obj"></student-footer>
-    </div>
+    <section ng-controller='visitingCardController'>
+        <visiting-card obj='obj2'>
+        </visiting-card>
+    </section>
 </body>
 
 </html>
