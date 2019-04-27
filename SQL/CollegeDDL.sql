@@ -1,0 +1,54 @@
+CREATE TABLE COLLEGE
+(CollegeName VARCHAR(25) NOT NULL,
+Location VARCHAR(25) NOT NULL,
+CollegeID int NOT NULL,
+PRIMARY KEY (CollegeID)
+);
+
+select * from COLLEGE;
+
+CREATE TABLE STUDENT
+(StudentName VARCHAR(25) NOT NULL,
+Address VARCHAR(25),
+StudentID int NOT NULL,
+DOB VARCHAR(25),
+CollegeId int NOT NULL,
+PRIMARY KEY (StudentID),
+FOREIGN KEY (CollegeId)REFERENCES COLLEGE(CollegeID)
+);
+
+select * from STUDENT;
+
+ALTER TABLE STUDENT
+ADD Branch varchar(25);
+
+CREATE TABLE Professor
+(ProfessorName VARCHAR(25) NOT NULL,
+Address VARCHAR(25),
+ProfessorID int NOT NULL,
+DOB VARCHAR(25),
+CollegeId int NOT NULL,
+Branch varchar(25) NOT NULL,
+PRIMARY KEY (ProfessorID),
+FOREIGN KEY (CollegeId)REFERENCES COLLEGE(CollegeID)
+);
+
+select * from Professor;
+
+INSERT INTO COLLEGE VALUES('TERNA ENGG','NERUL',1);
+INSERT INTO COLLEGE VALUES('SLRTCE ENGG','MIRA ROAD',2);
+INSERT INTO COLLEGE VALUES('VIVA ENGG','Mumbai',3);
+
+select * from STUDENT;
+
+INSERT INTO STUDENT VALUES('Vinod','Parel',1001,'9-Oct-1994',1,'I.T.');
+INSERT INTO STUDENT VALUES('Prachit','Mulund',1002,'10-Oct-1995',2,'Comps');
+INSERT INTO STUDENT VALUES('Devang','Mira Road',1003,'11-Oct-1993',2,'EXTC');
+INSERT INTO STUDENT VALUES('Gurang','Thane',1004,'12-Oct-1993',1,'EXTC');
+INSERT INTO STUDENT VALUES('Ajay','Nerul',1005,'13-Oct-1996',1,'I.T.');
+INSERT INTO STUDENT VALUES('Kuntan','Nerul',1006,'14-Oct-1996',2,'Comps');
+
+INSERT INTO Professor VALUES('Rathod','Mumbai',9001,'13-Oct-1960',1,'Comps');
+INSERT INTO Professor VALUES('Rahul','Nerul',9002,'01-Oct-1963',2,'I.T');
+INSERT INTO Professor VALUES('Joy','Andheri',9003,'10-Oct-1966',1,'EXTC');
+
