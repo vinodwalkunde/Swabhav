@@ -40,7 +40,7 @@ public class RegisterController extends HttpServlet {
 				AccountRespository accountRespository=new AccountRespository();
 				AccountService service=new AccountService(accountRespository);
 				service.registerUser(account);
-//				response.sendRedirect("add");
+				response.sendRedirect("login");
 			} else {
 				request.setAttribute("name", name);
 				request.setAttribute("balance", balance);

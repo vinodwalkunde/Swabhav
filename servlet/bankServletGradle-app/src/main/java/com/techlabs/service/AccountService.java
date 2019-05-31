@@ -1,6 +1,10 @@
 package com.techlabs.service;
 
+import java.sql.SQLException;
+import java.util.List;
+
 import com.techlabs.business.Account;
+import com.techlabs.business.Transaction;
 import com.techlabs.repository.AccountRespository;
 
 public class AccountService {
@@ -39,4 +43,13 @@ public class AccountService {
 		return accountRespository.getLoginDetail(name);
 	}
 
+	public List<Transaction> accountStatement(String name) {
+		try {
+			return accountRespository.accountStatement(name);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+
+	}
 }

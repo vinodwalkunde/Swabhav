@@ -8,13 +8,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import com.techlabs.business.Account;
+import com.techlabs.business.Transaction;
 
 public class AccountRespository {
-	private static List<Account> accountList;
 	private Connection con;
 
 	public AccountRespository() {
@@ -192,5 +193,17 @@ public class AccountRespository {
 		} else {
 			return false;
 		}
+	}
+	public List<Transaction> accountStatement(String name) throws SQLException{
+		PreparedStatement statement=con.prepareStatement("select * from Transaction where name=?");
+		statement.setString(1, name);
+		ResultSet resultSet=statement.executeQuery();
+		List<Transaction> transactionsList=new ArrayList<Transaction>();
+		while(resultSet.next()) {
+			Transaction transaction= new Transaction(resultSet.getString(1), resultSet.getString(3), resultSet.getInt(2), resultSet.getString(4));
+			transactionsList.add(transaction);
+		}
+		return transactionsList;
+		
 	}
 }

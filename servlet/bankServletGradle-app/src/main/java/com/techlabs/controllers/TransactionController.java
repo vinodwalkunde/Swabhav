@@ -25,8 +25,11 @@ public class TransactionController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		HttpSession session = request.getSession(false);
+		
 		if (session != null) {
+			
 			String name = (String) session.getAttribute("user");
 			int amount = Integer.parseInt(request.getParameter("amount"));
 			String payment = request.getParameter("payment");
